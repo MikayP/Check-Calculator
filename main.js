@@ -15,8 +15,19 @@ $(document).ready(function() {
 
     $(deleteButton).click(function(e) {
         e.preventDefault();
-         $(wrapper).find('div:last').remove();
+        var myNode = document.getElementById("userNumbers");
+        i=myNode.childNodes.length - 1;
+        if(i>=0){
+        myNode.removeChild(myNode.childNodes[i]);
         x--;
+        }
+
     });
 
 });
+
+function paidAmount() {
+    var checkInput = document.getElementById('paidTotal');
+    var person = document.getElementById('check').value;
+    checkInput.innerHTML = person;
+}

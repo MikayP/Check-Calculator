@@ -15,7 +15,8 @@
     <h1> Check Calculator</h1>
 
     <h3>Check Total</h3>
-    $ <input type="text" name="check">
+    $ <input type="text" id="check" value="" />
+    <button onclick="paidAmount()">Run</button>
 
     <h3>Tip%</h3>
     <select name="tip">
@@ -31,19 +32,24 @@
 total+tip
    amount /person if equal
 -->
-    <h3>Number of People</h3>
+    <h3>Number of People: <span id="numberOfPeople"></span></h3>
 
     <button type="button" id="plusOne">+</button>
     <button type="button" id="minusOne">-</button>
 
     <div id="userNumbers">
-       <p>
+       <div class="">
         <input type="text" id="person" name="person">
-        </p>
+        </div>
     </div>
 
+<!--Paid Amount-->
+<div>
+    <h3>Paid Amount: <span id="paidTotal"></span></h3>
+</div>
 <!--total net left-->
-    <script src="main.js"></script>
+
+  <script src="main.js" type="text/javascript"></script>
 </body>
 
 </html>
