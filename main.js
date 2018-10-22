@@ -26,8 +26,30 @@ $(document).ready(function() {
 
 });
 
-function paidAmount() {
-    var checkInput = document.getElementById('paidTotal');
-    var person = document.getElementById('check').value;
-    checkInput.innerHTML = person;
+function peoplePaid() {
+    var checkTotal = document.getElementById('check').value;
+    var personsCheck = document.getElementById('persons').value;
+    var paidTotal = document.getElementById('paidTotal');
+
+    for(var i = 1; i < personsCheck.length; i+=1){
+        personsCheck[i] += paidTotal;
+    }
+    paidTotal.innerHTML = checkTotal - personsCheck;
+
+
+}
+
+function plusOne() {
+    var button = document.getElementById('plusOne');
+    var numPeople = document.getElementById('numberOfPeople');
+    numPeople.innerHTML = button.value += 1;
+}
+
+function minusOne() {
+    var button = document.getElementById('minusOne');
+    var numPeople = document.getElementById('numberOfPeople');
+    var userNumbers = document.getElementById('userNumbers').length;
+    if(userNumbers > 1 ){
+       numPeople.innerHTML = button.value -= 1;
+       }
 }
