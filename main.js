@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     var maxFields = 20;
     var addButton = $('#plusOne');
     var deleteButton = $('#minusOne');
@@ -13,13 +13,13 @@ $(document).ready(function() {
         }
     });
 
-    $(deleteButton).click(function(e) {
+    $(deleteButton).click(function (e) {
         e.preventDefault();
         var myNode = document.getElementById("userNumbers");
-        i=myNode.childNodes.length - 1;
-        if(i>=0){
-        myNode.removeChild(myNode.childNodes[i]);
-        x--;
+        i = myNode.childNodes.length - 1;
+        if (i >= 0) {
+            myNode.removeChild(myNode.childNodes[i]);
+            x--;
         }
 
     });
@@ -28,10 +28,10 @@ $(document).ready(function() {
 
 function peoplePaid() {
     var checkTotal = document.getElementById('check').value;
-    var personsCheck = document.getElementById('persons').value;
+    var personsCheck = document.querySelectorAll('#persons').value;
     var paidTotal = document.getElementById('paidTotal');
 
-    for(var i = 1; i < personsCheck.length; i+=1){
+    for (var i = 1; i < personsCheck.length; i += 1) {
         personsCheck[i] += paidTotal;
     }
     paidTotal.innerHTML = checkTotal - personsCheck;
@@ -39,17 +39,22 @@ function peoplePaid() {
 
 }
 
+var clicks = 1;
+
 function plusOne() {
-    var button = document.getElementById('plusOne');
-    var numPeople = document.getElementById('numberOfPeople');
-    numPeople.innerHTML = button.value += 1;
+
+    if (clicks < 20){
+          clicks += 1;
+        document.getElementById('numberOfPeople').innerHTML = clicks;
+    }
+
 }
 
 function minusOne() {
-    var button = document.getElementById('minusOne');
-    var numPeople = document.getElementById('numberOfPeople');
-    var userNumbers = document.getElementById('userNumbers').length;
-    if(userNumbers > 1 ){
-       numPeople.innerHTML = button.value -= 1;
-       }
+
+    if(clicks >= 1 )
+    {
+        clicks -= +1
+    document.getElementById('numberOfPeople').innerHTML = clicks;
+}
 }
