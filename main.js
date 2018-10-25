@@ -3,7 +3,7 @@ $(document).ready(function () {
     var addButton = $('#plusOne');
     var deleteButton = $('#minusOne');
     var wrapper = $('#userNumbers');
-    var fieldInput = '<div><input type="text" name="persons" id="persons"/></div>';
+    var fieldInput = '<div><input type="text" name="persons" class="persons"/></div>';
     var x = 1;
 
     $(addButton).click(function () {
@@ -11,6 +11,7 @@ $(document).ready(function () {
             x++;
             $(wrapper).append(fieldInput);
         }
+
     });
 
     $(deleteButton).click(function (e) {
@@ -25,17 +26,31 @@ $(document).ready(function () {
     });
 
 });
+//    var personsCheck = parseFloat(document.getElementsByClassName('persons')[0].value);
 
 function peoplePaid() {
-    var checkTotal = document.getElementById('check').value;
-    var personsCheck = document.querySelectorAll('#persons').value;
+    var checkTotal = parseFloat(document.getElementById('check').value);
+    var personsCheck = document.getElementsByClassName('persons');
     var paidTotal = document.getElementById('paidTotal');
+    var serviceQuality = document.getElementById('serviceQuality').value;
+    var difference = document.getElementsByClassName('difference').value;
 
-    for (var i = 1; i < personsCheck.length; i += 1) {
-        personsCheck[i] += paidTotal;
+    var pCheck = 0;
+
+    for (var i = 0; i < personsCheck.length; i += 1) {
+        pCheck += parseFloat(personsCheck[i].value);
+
     }
-    paidTotal.innerHTML = checkTotal - personsCheck;
+    paidTotal.innerHTML = (checkTotal * serviceQuality).toFixed(3) - pCheck.toFixed(3);
+    var checkDifference = 0;
+    for (var i = 0; i < personsCheck.length; i += 1) {
 
+        checkDifference = parseFloat(paidTotal - pCheck).value;
+    }
+
+    checkDifference.innerHTML = '';
+
+    console.log(checkDifference);
 
 }
 
@@ -43,8 +58,8 @@ var clicks = 1;
 
 function plusOne() {
 
-    if (clicks < 20){
-          clicks += 1;
+    if (clicks < 20) {
+        clicks += 1;
         document.getElementById('numberOfPeople').innerHTML = clicks;
     }
 
@@ -52,9 +67,8 @@ function plusOne() {
 
 function minusOne() {
 
-    if(clicks >= 1 )
-    {
+    if (clicks >= 1) {
         clicks -= +1
-    document.getElementById('numberOfPeople').innerHTML = clicks;
-}
+        document.getElementById('numberOfPeople').innerHTML = clicks;
+    }
 }
