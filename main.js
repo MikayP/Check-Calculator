@@ -3,16 +3,19 @@ $(document).ready(function () {
     var addButton = $('#plusOne');
     var deleteButton = $('#minusOne');
     var wrapper = $('#userNumbers');
-    var fieldInput = '<div><input type="text" name="persons" class="persons"/></div>';
+    var fieldInput = '<div><input type="number" class="persons" value="0" name="person" /><p class="difference">$</p></div>';
     var x = 1;
 
     $(addButton).click(function () {
         if (x < maxFields) {
             x++;
             $(wrapper).append(fieldInput);
+            console.log(fieldInput);
         }
 
     });
+    
+//    add/delete class if number <0 or >0 make it different colors
 
     $(deleteButton).click(function (e) {
         e.preventDefault();
@@ -26,6 +29,7 @@ $(document).ready(function () {
     });
 
 });
+
 //    var personsCheck = parseFloat(document.getElementsByClassName('persons')[0].value);
 
 function peoplePaid() {
@@ -33,24 +37,38 @@ function peoplePaid() {
     var personsCheck = document.getElementsByClassName('persons');
     var paidTotal = document.getElementById('paidTotal');
     var serviceQuality = document.getElementById('serviceQuality').value;
-    var difference = document.getElementsByClassName('difference').value;
+    var difference = document.getElementsByClassName('difference');
 
     var pCheck = 0;
 
+//    average of the check total minus each contribution
+    
     for (var i = 0; i < personsCheck.length; i += 1) {
-        pCheck += parseFloat(personsCheck[i].value);
+        
+          var checkValue = personsCheck[i].value;
+        pCheck += parseFloat(checkValue);
+        
+        var payDifference = (checkTotal / personsCheck.length) - checkValue;
+        
+      
+        
+        difference[i].innerHTML = "$" + payDifference.toFixed(2);
+        
+        
+        console.log("ct", checkTotal);
+        console.log(difference);
+        console.log(pCheck);
 
     }
-    paidTotal.innerHTML = (checkTotal * serviceQuality).toFixed(3) - pCheck.toFixed(3);
-    var checkDifference = 0;
-    for (var i = 0; i < personsCheck.length; i += 1) {
+    
+//    var serviceQuality = document.getElementById('serviceQuality');
+//    var serviceValue = serviceQuality.value[serviceQuality.selectedIndex].value;
+    
+    
+    paidTotal.innerHTML = (checkTotal * serviceQuality)- pCheck;
 
-        checkDifference = parseFloat(paidTotal - pCheck).value;
-    }
-
-    checkDifference.innerHTML = '';
-
-    console.log(checkDifference);
+    var checkDifference = parseFloat((paidTotal - pCheck).value);
+//console.log(difference);
 
 }
 
