@@ -66,10 +66,13 @@ function peoplePaid() {
 
     if(remainAmount > 0){
         paidTotal.innerHTML = "You are " +  paidTotalFixed.toFixed(2) + " over.";
+        paidTotal.classList.add('aboveZero');
     } else if ( remainAmount < 0){
-        paidTotal.innerHTML = "You are " + paidTotalFixed.toFixed(2)  + " under."
+        paidTotal.innerHTML = "You are " + paidTotalFixed.toFixed(2)  + " under.";
+        paidTotal.classList.add('belowZero');
     } else { 
-        paidTotal.innerHTML = "Right on the money!"
+        paidTotal.innerHTML = "Right on the money!";
+        paidTotal.classList.add('aboveZero');
     }
 
 }
