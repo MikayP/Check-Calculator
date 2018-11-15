@@ -3,19 +3,18 @@ $(document).ready(function () {
     var addButton = $('#plusOne');
     var deleteButton = $('#minusOne');
     var wrapper = $('#userNumbers');
-    var fieldInput = '<div><input type="number" class="persons" value="0" name="person" /><p class="difference">$</p></div>';
+    var fieldInput = '<div><input type="number" class="persons" value="0" name="person" /><div class="numberChange"><p class="difference dollarSpacing">$</p></div></div>';
     var x = 1;
 
     $(addButton).click(function () {
         if (x < maxFields) {
             x++;
             $(wrapper).append(fieldInput);
-            console.log(fieldInput);
         }
 
     });
-    
-//    add/delete class if number <0 or >0 make it different colors
+
+    //    add/delete class if number <0 or >0 make it different colors
 
     $(deleteButton).click(function (e) {
         e.preventDefault();
@@ -38,39 +37,45 @@ function peoplePaid() {
     var paidTotal = document.getElementById('paidTotal');
     var serviceQuality = document.getElementById('serviceQuality').value;
     var difference = document.getElementsByClassName('difference');
-
+    var numberChange = document.getElementsByClassName('numberChange');
     var pCheck = 0;
 
-//    average of the check total minus each contribution
-    
+
+    //    average of the check total minus each contribution
+
     for (var i = 0; i < personsCheck.length; i += 1) {
-        
-          var checkValue = personsCheck[i].value;
+
+        var checkValue = personsCheck[i].value;
         pCheck += parseFloat(checkValue);
-        
         var payDifference = (checkTotal / personsCheck.length) - checkValue;
-        
-      
-        
         difference[i].innerHTML = "$" + payDifference.toFixed(2);
+        var floatedDifference = parseFloat(payDifference);
         
-        
-        console.log("ct", checkTotal);
-        console.log(difference);
-        console.log(pCheck);
 
+        if (floatedDifference >= 0) {
+            numberChange[i].classList.add('aboveZero');
+        } else{
+            numberChange[i].classList.add('belowZero');
+        }
     }
-    
-//    var serviceQuality = document.getElementById('serviceQuality');
-//    var serviceValue = serviceQuality.value[serviceQuality.selectedIndex].value;
-    
-    
-    paidTotal.innerHTML = (checkTotal * serviceQuality)- pCheck;
 
-    var checkDifference = parseFloat((paidTotal - pCheck).value);
-//console.log(difference);
+
+    var paidTotalFixed = (checkTotal * serviceQuality) - pCheck;
+    var remainAmount = paidTotalFixed.toFixed(2);
+
+
+    if(remainAmount > 0){
+        paidTotal.innerHTML = "You are " +  paidTotalFixed.toFixed(2) + " over.";
+    } else if ( remainAmount < 0){
+        paidTotal.innerHTML = "You are " + paidTotalFixed.toFixed(2)  + " under."
+    } else { 
+        paidTotal.innerHTML = "Right on the money!"
+    }
 
 }
+
+
+
 
 var clicks = 1;
 

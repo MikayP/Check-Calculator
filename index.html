@@ -5,18 +5,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Check Calculator</title>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
+<section>
     <h1> Check Calculator</h1>
 
     <h3>Check Total</h3>
-    $ <input type="text" id="check" value="" />
-
+    <div class="inlineDollars">
+    <p class="dollarSpacing">$</p> <input type="text" id="check" value="0" />
+    </div>
     <h3>Tip%</h3>
     <select name="tip" id="serviceQuality">
         <option disabled selected value="1">-- Choose an Option --</option>
@@ -33,24 +35,27 @@ total+tip
 -->
     <h3>Number of People: <span id="numberOfPeople"></span></h3>
 
-    <button type="button" onclick="plusOne()" id="plusOne" >+</button>
+    <button type="button" onclick="plusOne()" id="plusOne">+</button>
     <button type="button" onclick="minusOne()" id="minusOne">-</button>
 
 
     <div>
         <div id="userNumbers">
-            <input type="text" class="persons" name="person" />
-            <p class="difference">$</p>
+            <input type="text" class="persons" name="person" value="0"/>
+            <div class="numberChange">
+                <p class="difference dollarSpacing">$</p>
+            </div>
         </div>
     </div>
 
 
     <button onclick="peoplePaid()">Calculate</button>
-    <!--Paid Amount-->
+
     <div>
         <h3>Remaining Amount: <span id="paidTotal"></span></h3>
     </div>
-    <!--total net left-->
+
+</section>
 
     <script src="main.js" type="text/javascript"></script>
 </body>

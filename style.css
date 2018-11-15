@@ -1,0 +1,29 @@
+body{
+    background-image: linear-gradient(to bottom right, rgb(0, 163, 238), rgba(0, 0, 0, 0.021));
+    text-align: center;
+    height:100vh;
+}
+
+h1, h3, p{
+    font-family: sans-serif;
+    font-weight: 800;
+}
+
+.inlineDollars{
+    display:inline-flex;
+}
+.dollarSpacing{
+    padding-right: 5px;
+}
+.aboveZero{
+    color: green;
+}
+
+.belowZero{
+    color: red;
+}
+
+input{
+    border-radius: 5px;
+    margin-top:10px;
+}
