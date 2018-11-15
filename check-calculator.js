@@ -47,7 +47,7 @@ function peoplePaid() {
 
         var checkValue = personsCheck[i].value;
         pCheck += parseFloat(checkValue);
-        var payDifference = (checkTotal / personsCheck.length) - checkValue;
+        var payDifference = ((checkTotal / personsCheck.length) * serviceQuality) - checkValue;
         difference[i].innerHTML = "$" + payDifference.toFixed(2);
         var floatedDifference = parseFloat(payDifference);
         
@@ -64,10 +64,10 @@ function peoplePaid() {
     var remainAmount = paidTotalFixed.toFixed(2);
 
 
-    if(remainAmount > 0){
+    if(remainAmount < 0){
         paidTotal.innerHTML = "You are " +  paidTotalFixed.toFixed(2) + " over.";
         paidTotal.classList.add('aboveZero');
-    } else if ( remainAmount < 0){
+    } else if ( remainAmount > 0){
         paidTotal.innerHTML = "You are " + paidTotalFixed.toFixed(2)  + " under.";
         paidTotal.classList.add('belowZero');
     } else { 
